@@ -18,6 +18,7 @@ int main(void)
     ccnum = get_long_long("What is you're credit card number?: ");
     length = llong_len(ccnum);
 
+    //check the length of the credit card number
     if (length != 13 && length != 15 && length != 16)
     {
         printf("INVALID\n");
@@ -32,15 +33,7 @@ int main(void)
         ccnum = floor(ccnum / 10);
     }
 
-    /*
-    for (int i = 0; i < length; i++)
-    {
-        printf("%i", digits[i]);
-    }
-
-    printf("\n");
-    */
-
+    //check if the number is associated to AMEX, VISA, or MASTERCARD
     string company = check_starting_numbs(digits);
 
     if (strcmp(company, "INVALID") == 0)
@@ -49,6 +42,7 @@ int main(void)
         return 0;
     }
 
+    //use credit card checking algorithm to see if the number is legitimate
     int total_under = 0;
     int int_length = 0;
     for (int i = length - 2; i >= 0; i = i - 2)
@@ -85,7 +79,7 @@ int main(void)
 
 }
 
-
+//gets the number of digits of a long long type number
 int llong_len(long long n)
 {
     if(n == 0)
@@ -96,7 +90,7 @@ int llong_len(long long n)
     return floor(log10(llabs(n))) + 1;
 }
 
-
+//gets the number of digits of an integer type number
 int int_len(int n)
 {
      if(n == 0)
@@ -107,7 +101,7 @@ int int_len(int n)
     return floor(log10(abs(n))) + 1;
 }
 
-
+//checks what (if any) company the number corresponds with
 string check_starting_numbs(int a[])
 {
     if (a[0] == 4)
